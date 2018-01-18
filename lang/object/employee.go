@@ -14,10 +14,14 @@ type Employee struct {
 	EmployeeID int32
 }
 
-func (e *Employee) GetEmployeeID() int32 {
+func (e Employee) GetEmployeeID() int32 {
 	return e.EmployeeID
 }
 
+func (e *Employee) ChangeEmployeeID() {
+	e.EmployeeID = 0
+}
+
 func (e *Employee) PrintID() {
-	fmt.Println("Employee's ID")
+	fmt.Printf("Employee's ID : %d \n", e.EmployeeID)
 }

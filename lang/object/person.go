@@ -30,16 +30,15 @@ func (p Person) NotReallyChangeName() string {
 	return p.Name
 }
 
-func (p *Person) PrintID() {
-	fmt.Println("Person's ID")
-}
-
-type CommonPerson interface {
+type PrintIDPerson interface {
 	PrintID()
 }
 
 //CallPersonID will print a person id
-func PrintPersonID(commonPerson CommonPerson) {
-	commonPerson.PrintID()
-	//fmt.Println("Not really change name: " + commonPerson.PrintID())
+func PrintPersonID(pidPerson PrintIDPerson) {
+	pidPerson.PrintID()
+}
+
+func (p Person) PrintID() {
+	fmt.Printf("Person's ID : %d \n", p.Id)
 }

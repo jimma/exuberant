@@ -6,12 +6,19 @@ import (
 	"github.com/jimma/exuberant/lang/object"
 )
 
-func PrintPersonID(in interface{}) {
-	commonPerson, ok := in.(object.CommonPerson)
+func PrintPersonIDToConsole(in interface{}) {
+	pidPerson, ok := in.(object.PrintIDPerson)
 	if ok {
-		commonPerson.PrintID()
+		pidPerson.PrintID()
+	} else {
+		fmt.Printf("Input : %v isn't a PrintIDPerson\n", in)
 	}
 }
+
+func PrintPersonID(pidPerson object.PrintIDPerson) {
+	pidPerson.PrintID()
+}
+
 func adder() func(int) int {
 	sum := 0
 	return func(x int) int {
@@ -21,7 +28,7 @@ func adder() func(int) int {
 }
 func main() {
 	person := object.Person{"John", "male", 100010}
-	employee := object.Employee{person, "MS", 0001}
+	employee := object.Employee{person, "MS", 10001}
 
 	fmt.Printf("Employee's name is: %s \n", employee.GetName())
 	//pointer receiver
@@ -34,7 +41,17 @@ func main() {
 	//a pointer type may call the methods of its associated value type,
 	//but not vice verse
 	//interface type needs a pointer receive, so we need to pass the pointer value
-	PrintPersonID(&person)
-	object.PrintPersonID(&employee)
 
+	PrintPersonID(&person)
+	PrintPersonID(person)
+	person.PrintID()
+	employee.PrintID()
+	(&employee).PrintID()
+	//complie error PrintPersonID(employee)
+	//object.PrintPersonID(employee)
+
+	PrintPersonIDToConsole(person)
+	PrintPersonIDToConsole(&person)
+	PrintPersonIDToConsole(employee)
+	PrintPersonIDToConsole(&employee)
 }
