@@ -20,6 +20,7 @@ func main() {
 	wg.Add(100)
 
 	for i := 0; i < 50; i++ {
+
 		go func() {
 			defer wg.Done()
 			myBalance.Expense(10)
@@ -39,6 +40,7 @@ func main() {
 	fmt.Printf("init Balance2 is : %d \n", myBalance2.Get())
 	done := make(chan bool)
 	for i := 0; i < 50; i++ {
+
 		go func() {
 			myBalance2.Expense(10)
 			done <- true

@@ -1,6 +1,8 @@
 package object
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Employee struct {
 	//A field declared with a type but no explicit field name is
@@ -10,8 +12,9 @@ type Employee struct {
 	// pointer type. The unqualified type name acts as the field name.
 	//so person's default field name is Person
 	Person
-	Company    string
-	EmployeeID int32
+	Company       string
+	EmployeeID    int32
+	PrintIDPerson PrintIDPerson
 }
 
 func (e Employee) GetEmployeeID() int32 {

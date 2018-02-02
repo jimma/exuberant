@@ -28,10 +28,11 @@ func adder() func(int) int {
 }
 func main() {
 	person := object.Person{"John", "male", 100010}
-	employee := object.Employee{person, "MS", 10001}
+	employee := object.Employee{person, "MS", 10001, person}
 
 	fmt.Printf("Employee's name is: %s \n", employee.GetName())
 	//pointer receiver
+	employee.PrintIDPerson.PrintID()
 
 	employee.NotReallyChangeName()
 	fmt.Printf("Value receive won't change name: %s \n", employee.GetName())
